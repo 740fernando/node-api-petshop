@@ -3,8 +3,9 @@ const Atendimento = require('../models/atendimentos')
 
 module.exports= app =>{
     app.get('/atendimentos',(req,res)=>{
-      atendimentos.lista(res)
-
+      atendimentos.lista()
+        .then(resultados => res.json(resultados))
+        .catch(erros => res.status(400).json(erros))
     })
 
     app.get('/atendimentos/:id',(req,res)=>{
